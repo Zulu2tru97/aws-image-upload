@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-undef */
 import React, {useState,useEffect,useCallback} from 'react';
 import './App.css';
@@ -27,7 +28,7 @@ const UserProfiles = () => {
         <h1>{userProfile.username}</h1>
         <p>{userProfile.userProfileId}</p>
         {/* <h1>{userProfile.userProfileImageLink}</h1> */}
-        <Dropzone/>
+        <Dropzone {...userProfile}/>
         <br/>
       </div>
     );
@@ -35,10 +36,30 @@ const UserProfiles = () => {
 
 };
 
-function Dropzone() {
+function Dropzone({ userProfileId}) {
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
+
     console.log(file);
+
+    const formdata = new FormData();
+
+    formdata.append("file",file);
+
+    axios.post("http://localhost:8080/api/v1/user-profile/${userProfileId}/image/upload",
+      formdata,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }
+    ).then(() => { 
+      console.log("file got filled")
+
+    }).catch(err => {
+      console.log(err)
+    });
+
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 

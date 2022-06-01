@@ -6,21 +6,21 @@ import java.util.UUID;
 
 public class UserProfile {
 
-    private UUID userProfileId;
+    private String userProfileId;
     private String username;
     private String userProfileImageLink; //s3
 
-    public UserProfile(UUID userProfileId, String username, String userProfileImageLink) {
+    public UserProfile(String userProfileId, String username, String userProfileImageLink) {
         this.userProfileId = userProfileId;
         this.username = username;
         this.userProfileImageLink = userProfileImageLink;
     }
 
-    public UUID getUserProfileId() {
+    public String getUserProfileId() {
         return userProfileId;
     }
 
-    public void setUserProfileId(UUID userProfileId) {
+    public void setUserProfileId(String userProfileId) {
         this.userProfileId = userProfileId;
     }
 

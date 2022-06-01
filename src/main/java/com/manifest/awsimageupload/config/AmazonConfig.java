@@ -15,7 +15,7 @@ import java.nio.file.Path;
 @Configuration
 public class AmazonConfig {
 
-    private EnvironmentVariableCredentialsProvider environmentVariableCredentialsProvider;
+    private EnvironmentVariableCredentialsProvider environmentVariableCredentialsProvider = new EnvironmentVariableCredentialsProvider();
 
     @Bean
     public AmazonS3 s3() {
